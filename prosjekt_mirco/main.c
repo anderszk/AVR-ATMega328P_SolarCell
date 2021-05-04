@@ -47,7 +47,6 @@ static inline void initTimer1Servo(void) {
 int main(void) {
 	
 	// -------- Inits --------- //
-	
 	// adc:
 	uint16_t potentiometerValue;
 	initADC0();
