@@ -7,8 +7,9 @@ Filene på Github består av en main-fil, header-filer og de respektive source-f
 For å installere dette programmet kan du pulle fra repoen eller laste ned zip-versjonen.
 
 ## Komponenter som ble brukt
-  - 2xLyssensor (id)
+  - 2xPhotoresistor (id)
   - Potensiometer (id)
   - Servemotor (id)
   - Arduino UNO
   - USB Type B
+  - Resistor (value)
