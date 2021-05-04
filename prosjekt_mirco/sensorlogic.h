@@ -3,10 +3,10 @@
 
 int position;
 int positionMax;
-int positionMin;
 
 void validatePosition(int position);
 int correctPosition(int potValue, int leftSensor, int rightSensor);
 void moveServo(int position);
+int ADC_init(int pin);
 
 #endif
