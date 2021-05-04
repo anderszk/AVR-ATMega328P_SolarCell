@@ -2,7 +2,9 @@
 #define SERVO_H_INCLUDED
 
 //Variables
-
+int positionMin;
+int positionMax;
+int position;
 
 //Functions
 void timer_init(void);
