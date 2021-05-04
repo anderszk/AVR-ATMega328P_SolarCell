@@ -7,5 +7,5 @@
 //Functions
 void timer_init(void);
 void ADC_init(void);
-void moveServo(int position);
+void moveServo(int sens1, int sens2, int potmeter);
 #endif

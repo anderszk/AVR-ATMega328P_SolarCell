@@ -19,10 +19,3 @@ int correctPosition(int potValue, int leftSensor, int rightSensor){ //Function t
         return (pos += potValue);
     }
 }
-
-
-void moveServo(int position){ //Function to move Servo
-    return;
-}
-
-void 
