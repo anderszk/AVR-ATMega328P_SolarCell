@@ -5,22 +5,10 @@ include "servo.h"
 #define F_CPU 16000000UL // 16MHz system clock
 #define T1_PRESCALE 8 // Timer 1 clock prescaler
 
-/* System clock and timer prescaler will give one tick each 0,5us, thus we
 
-need 40000 ticks to get 20 ms period, 1 ms is 2000 and 2 ms is 4000.
-
-Code below automatically calculates values.*/
-
-// servo period = 20ms = 20000us (=50Hz):
 
 #define SERVO_PERIOD F_CPU/1000000*20000/T1_PRESCALE
-
-// maximum servo should be = 2ms = 2000us, but is 2100 after testing servo:
-
 #define SERVO_MAX F_CPU/1000000*2000/T1_PRESCALE
-
-// minimum should be = 1ms = 1000us, but is 460 us after testing:
-
 #define SERVO_MIN F_CPU/1000000*460/T1_PRESCALE
 
 
@@ -66,9 +54,7 @@ return ADC
 }
 
 //Moves servo to desired position
-void moveServo(int sens1, int sens2, int p
-otm){
-    //Map her
-    OCR1A = ADC*(SERVO_MAX-SERVO_MIN)/1024+SERVO_MIN;
+void moveServo(int position){
+    OCR1A = ((((position - positionMin)*(SERVO_MAX - SERVO_MIN))/(positionMax - positionMin)) + SERVO_MIN);
 }
 
