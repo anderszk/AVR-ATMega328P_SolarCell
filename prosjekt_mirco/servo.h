@@ -8,6 +8,6 @@ int position;
 
 //Functions
 void timer_init(void);
-void ADC_init(void);
-void moveServo(int sens1, int sens2, int potmeter);
+int ADC_init(int pin);
+void moveServo(int position);
 #endif

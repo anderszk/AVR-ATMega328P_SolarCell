@@ -1,7 +1,6 @@
 #include "sensorlogic.h"
 
-int positionMax = 180;
-int positionMin = 0;
+
 
 int potmeter_init(){
     return;

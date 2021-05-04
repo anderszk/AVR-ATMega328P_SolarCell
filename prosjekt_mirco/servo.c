@@ -1,4 +1,4 @@
-include "servo.h"
+#include "servo.h"
 #include <avr/interrupt.h>
 #include <util/delay.h>
 
@@ -11,7 +11,8 @@ include "servo.h"
 #define SERVO_MAX F_CPU/1000000*2000/T1_PRESCALE
 #define SERVO_MIN F_CPU/1000000*460/T1_PRESCALE
 
-
+int positionMax = 180;
+int positionMin = 0;
 
 //Timer initialization
 void Timer1_PWM_init(int time)
@@ -33,24 +34,24 @@ ICR1 = SERVO_PERIOD; // Servo period = 20ms (50Hz)
 }
 
 //ADC initialization
-void ADC_Init(int pin){
+int ADC_Init(int pin){
 
 if (pin == 0){
-    ADMUX = (1<<REFS0)|(0<<ADLAR 7); // ADC0 single ended input and result right adjusted.
+    ADMUX = (1<<REFS0)|(0<<ADLAR); // ADC0 single ended input and result right adjusted.
 }
 else if(pin == 1){
-    ADMUX = (1<<REFS0)|(0<<ADLAR 7|(1 << MUX0));
+    ADMUX = (1<<REFS0)|(0<<ADLAR)|(1 << MUX0);
 }
 else if (pin == 2)
 {
-    ADMUX = (1<<REFS0)|(0<<ADLAR 7|(1 << MUX1));
+    ADMUX = (1<<REFS0)|(0<<ADLAR)|(1 << MUX1);
 }
 
 DIDR0 |= (1<<ADC0D); // digital input buffer disable, saves power.
 
 ADCSRA = (1<<ADEN)|(7<<ADPS0)|(1<<ADSC);
 
-return ADC
+return ADC;
 }
 
 //Moves servo to desired position
