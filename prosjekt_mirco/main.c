@@ -17,22 +17,23 @@
 #include "servo.h"
 
 int position = 90;
-int potMeter = ADC1;
-int lightSensor1 = ADC2;
-int lightSensor2 = ADC3;
+
+int potMeter;
+int lightSensor1;
+int lightSensor2;
 
 
 int main(void) {
 	
-	// -------- Inits --------- //
-	potmeter_init();
-	ightsensors_init();
-	Timer_PVM_init();
 	
 	
-	// ------ Event loop ------ //
+	
 	
 	do{
+		
+		potMeter = ADC_Init(1);
+		lightSensor1 = ADC_Init(2);
+		lightSensor2 = ADC_Init(3);
 
 		position = correctPosition(potMeter, lightSensor1, lightSensor2);
 		validatePosition(position);
@@ -46,5 +47,3 @@ int main(void) {
 		
 }
 
-
-ADMUX = (1 << REFS0 | )
