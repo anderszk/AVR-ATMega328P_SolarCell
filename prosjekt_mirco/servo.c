@@ -50,7 +50,7 @@ int ADC_Init(int pin){
 	return ADC;
 }
 
-//Moves servo to desired position
+//kjører servoen
 void moveServo(int position){
 	OCR1A = ((((position - positionMin)*(SERVO_MAX - SERVO_MIN))/(positionMax - positionMin)) + SERVO_MIN);
 }

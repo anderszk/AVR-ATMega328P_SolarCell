@@ -4,3 +4,7 @@
 
 main.c
 
+sensorlogic.c
+
+servo.c
+
