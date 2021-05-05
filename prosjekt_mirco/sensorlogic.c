@@ -1,7 +1,7 @@
 // justerer servo basert på sensor og potensometer
 #include "sensorlogic.h"
 
-void validatePosition(int position){ //Checks id the position has exceeded the valid positions
+void validatePosition(int position){     // gjør sånn at posisjonen til servo holder seg mellom 0-180 grader
 	if (position < 0){
 		position = 0;
 	}

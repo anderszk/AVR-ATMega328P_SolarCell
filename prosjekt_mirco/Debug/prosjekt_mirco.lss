@@ -147,7 +147,7 @@ int main(void) {
 // justerer servo basert på sensor og potensometer
 #include "sensorlogic.h"
 
-void validatePosition(int position){ //Checks id the position has exceeded the valid positions
+void validatePosition(int position){     // gjør sånn at posisjonen til servo holder seg mellom 0-180 grader
  106:	08 95       	ret
 
 00000108 <correctPosition>:
@@ -156,7 +156,7 @@ void validatePosition(int position){ //Checks id the position has exceeded the v
 	}
 }
 
-int correctPosition(int potValue, int leftSensor, int rightSensor){ //Returns degrees
+int correctPosition(int potValue, int leftSensor, int rightSensor){   //returnerer grader til servo
  108:	fb 01       	movw	r30, r22
  10a:	9a 01       	movw	r18, r20
 	
@@ -165,7 +165,7 @@ int correctPosition(int potValue, int leftSensor, int rightSensor){ //Returns de
  10e:	70 e0       	ldi	r23, 0x00	; 0
  110:	0e 94 e9 00 	call	0x1d2	; 0x1d2 <__divmodhi4>
 	
-	if (leftSensor > rightSensor){ //Må finne ut av hvilke vei den skal være
+	if (leftSensor > rightSensor){     //Må finne ut av hvilken vei den skal være
  114:	2e 17       	cp	r18, r30
  116:	3f 07       	cpc	r19, r31
  118:	6c f4       	brge	.+26     	; 0x134 <correctPosition+0x2c>
@@ -199,7 +199,7 @@ int correctPosition(int potValue, int leftSensor, int rightSensor){ //Returns de
  156:	08 95       	ret
 
 00000158 <ADC_Init>:
-}
+
 
 //ADC initialization
 int ADC_Init(int pin){

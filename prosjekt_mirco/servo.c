@@ -15,7 +15,7 @@ int positionMin = 0;
 //Timer initialization
 void Timer1_PWM_init(int time){
 	
-	DDRB = (1<<DDB1); // Set OC1A/PB1 as output.
+	DDRB = (1<<DDB1); // Set OC1A/PB1 as output. (pin 9)
 
 	/* Fast PWM non-inverting mode. Clear OC1A on Compare Match, set at TOP=ICR1.
 
@@ -26,8 +26,8 @@ void Timer1_PWM_init(int time){
 	TCCR1B = (1<<CS11)|(1<<WGM13)|(1<<WGM12);
 
 	ICR1 = SERVO_PERIOD; // Servo period = 20ms (50Hz)
-
 }
+
 
 //ADC initialization
 int ADC_Init(int pin){
