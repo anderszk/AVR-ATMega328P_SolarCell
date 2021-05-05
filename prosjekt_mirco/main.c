@@ -1,14 +1,10 @@
 /*
- * prosjekt_mirco.c
- *
- * Created: 22.04.2021 16:29:27
- * Author : nixxo
+* prosjekt_mirco.c
+*
+* Created: 22.04.2021 16:29:27
+* Author : nixxo
 
- */ 
-
-
-// ------- Preamble -------- //
-
+*/
 
 #include <avr/io.h>
 #include <util/delay.h>
@@ -17,17 +13,11 @@
 #include "servo.h"
 
 int position = 90;
-
 int potMeter;
 int lightSensor1;
 int lightSensor2;
 
-
 int main(void) {
-	
-	
-	
-	
 	
 	do{
 		
@@ -40,10 +30,9 @@ int main(void) {
 
 		moveServo(position);
 
-		
-
 		//interrupts
-	} while(1);
 		
+	} while(1);
+	
 }
 

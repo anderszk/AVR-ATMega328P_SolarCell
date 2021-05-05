@@ -101,8 +101,8 @@ Disassembly of section .text:
   a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 000000a6 <main>:
-	
-	
+
+int main(void) {
 	
 	do{
 		
@@ -144,32 +144,32 @@ Disassembly of section .text:
  104:	d0 cf       	rjmp	.-96     	; 0xa6 <main>
 
 00000106 <validatePosition>:
+// justerer servo basert på sensor og potensometer
 #include "sensorlogic.h"
-
 
 void validatePosition(int position){ //Checks id the position has exceeded the valid positions
  106:	08 95       	ret
 
 00000108 <correctPosition>:
-    else if(position > 180){
-        position = 180;
-    }
+	else if(position > 180){
+		position = 180;
+	}
 }
 
 int correctPosition(int potValue, int leftSensor, int rightSensor){ //Returns degrees
  108:	fb 01       	movw	r30, r22
  10a:	9a 01       	movw	r18, r20
 	
-	 potValue = potValue/200;
+	potValue = potValue/200;
  10c:	68 ec       	ldi	r22, 0xC8	; 200
  10e:	70 e0       	ldi	r23, 0x00	; 0
  110:	0e 94 e9 00 	call	0x1d2	; 0x1d2 <__divmodhi4>
-	 
-    if (leftSensor > rightSensor){ //Må finne ut av hvilke vei den skal være
+	
+	if (leftSensor > rightSensor){ //Må finne ut av hvilke vei den skal være
  114:	2e 17       	cp	r18, r30
  116:	3f 07       	cpc	r19, r31
  118:	6c f4       	brge	.+26     	; 0x134 <correctPosition+0x2c>
-        return (position -= potValue);
+		return (position -= potValue);
  11a:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
  11e:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
  122:	9c 01       	movw	r18, r24
@@ -179,12 +179,12 @@ int correctPosition(int potValue, int leftSensor, int rightSensor){ //Returns de
  12a:	30 93 01 01 	sts	0x0101, r19	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
  12e:	20 93 00 01 	sts	0x0100, r18	; 0x800100 <__DATA_REGION_ORIGIN__>
  132:	0f c0       	rjmp	.+30     	; 0x152 <correctPosition+0x4a>
-    }
-    if (leftSensor < rightSensor){
+	}
+	if (leftSensor < rightSensor){
  134:	e2 17       	cp	r30, r18
  136:	f3 07       	cpc	r31, r19
  138:	5c f4       	brge	.+22     	; 0x150 <correctPosition+0x48>
-        return (position += potValue);
+		return (position += potValue);
  13a:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
  13e:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
  142:	68 0f       	add	r22, r24
@@ -192,7 +192,7 @@ int correctPosition(int potValue, int leftSensor, int rightSensor){ //Returns de
  146:	70 93 01 01 	sts	0x0101, r23	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
  14a:	60 93 00 01 	sts	0x0100, r22	; 0x800100 <__DATA_REGION_ORIGIN__>
  14e:	01 c0       	rjmp	.+2      	; 0x152 <correctPosition+0x4a>
-    }
+	}
  150:	08 95       	ret
  152:	86 2f       	mov	r24, r22
  154:	97 2f       	mov	r25, r23
@@ -204,44 +204,44 @@ int correctPosition(int potValue, int leftSensor, int rightSensor){ //Returns de
 //ADC initialization
 int ADC_Init(int pin){
 
-if (pin == 0){
+	if (pin == 0){
  158:	00 97       	sbiw	r24, 0x00	; 0
  15a:	21 f4       	brne	.+8      	; 0x164 <ADC_Init+0xc>
-    ADMUX = (1<<REFS0)|(0<<ADLAR); // ADC0 single ended input and result right adjusted.
+		ADMUX = (1<<REFS0)|(0<<ADLAR); // ADC0 single ended input and result right adjusted.
  15c:	80 e4       	ldi	r24, 0x40	; 64
  15e:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__TEXT_REGION_LENGTH__+0x7f807c>
  162:	0c c0       	rjmp	.+24     	; 0x17c <ADC_Init+0x24>
-}
-else if(pin == 1){
+	}
+	else if(pin == 1){
  164:	81 30       	cpi	r24, 0x01	; 1
  166:	91 05       	cpc	r25, r1
  168:	21 f4       	brne	.+8      	; 0x172 <ADC_Init+0x1a>
-    ADMUX = (1<<REFS0)|(0<<ADLAR)|(1 << MUX0);
+		ADMUX = (1<<REFS0)|(0<<ADLAR)|(1 << MUX0);
  16a:	81 e4       	ldi	r24, 0x41	; 65
  16c:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__TEXT_REGION_LENGTH__+0x7f807c>
  170:	05 c0       	rjmp	.+10     	; 0x17c <ADC_Init+0x24>
-}
-else if (pin == 2)
+	}
+	else if (pin == 2)
  172:	02 97       	sbiw	r24, 0x02	; 2
  174:	19 f4       	brne	.+6      	; 0x17c <ADC_Init+0x24>
-{
-    ADMUX = (1<<REFS0)|(0<<ADLAR)|(1 << MUX1);
+	{
+		ADMUX = (1<<REFS0)|(0<<ADLAR)|(1 << MUX1);
  176:	82 e4       	ldi	r24, 0x42	; 66
  178:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__TEXT_REGION_LENGTH__+0x7f807c>
-}
+	}
 
-DIDR0 |= (1<<ADC0D); // digital input buffer disable, saves power.
+	DIDR0 |= (1<<ADC0D); // digital input buffer disable, saves power.
  17c:	ee e7       	ldi	r30, 0x7E	; 126
  17e:	f0 e0       	ldi	r31, 0x00	; 0
  180:	80 81       	ld	r24, Z
  182:	81 60       	ori	r24, 0x01	; 1
  184:	80 83       	st	Z, r24
 
-ADCSRA = (1<<ADEN)|(7<<ADPS0)|(1<<ADSC);
+	ADCSRA = (1<<ADEN)|(7<<ADPS0)|(1<<ADSC);
  186:	87 ec       	ldi	r24, 0xC7	; 199
  188:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__TEXT_REGION_LENGTH__+0x7f807a>
 
-return ADC;
+	return ADC;
  18c:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7f8078>
  190:	90 91 79 00 	lds	r25, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7f8079>
 }
@@ -251,7 +251,7 @@ return ADC;
 
 //Moves servo to desired position
 void moveServo(int position){
-    OCR1A = ((((position - positionMin)*(SERVO_MAX - SERVO_MIN))/(positionMax - positionMin)) + SERVO_MIN);
+	OCR1A = ((((position - positionMin)*(SERVO_MAX - SERVO_MIN))/(positionMax - positionMin)) + SERVO_MIN);
  196:	40 91 04 01 	lds	r20, 0x0104	; 0x800104 <__data_end>
  19a:	50 91 05 01 	lds	r21, 0x0105	; 0x800105 <__data_end+0x1>
  19e:	dc 01       	movw	r26, r24
