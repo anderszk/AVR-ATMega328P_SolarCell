@@ -12,8 +12,23 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "sensorlogic.h"
+#include "usart.h"
 
+#define USART_BAUDRATE 9600
+#define BAUD_PRESCALE (((F_CPU / (USART_BAUDRATE * 16UL))) - 1)
 
+void readPin(int pin1, int pin2, int pin3){
+	printString(" lightSensor1: ");
+	printWord(pin1);
+	printString(",");
+	printString(" lightSensor2: ");
+	printWord(pin2);
+	printString(",");
+	printString(" potMeter: ");
+	printWord(pin3);
+	printString("\r\n");
+	_delay_ms(1000);
+}
 
 int main(void) {
 	
@@ -22,24 +37,31 @@ int main(void) {
 	uint16_t lightSensor1;
 	uint16_t lightSensor2;
 	
+	
+	UBRR0 = BAUD_PRESCALE;
+	UCSR0B = (1 << RXEN0) | (1 << TXEN0);
+	
+	initUSART();
 	ADC_Init();
 	Timer1_PWM_init();
-		
-	do{
 	
-		//potMeter = ADC_Conversion(0);
-		// print potMeter to UART
- 		lightSensor1 = ADC_Conversion(1);
-// 		lightSensor2 = ADC_Conversion(2);
-		position = lightSensor1>>3;//correctPosition(potMeter, lightSensor1, lightSensor2, position);
-		// print
+	do{
+		
+		potMeter = ADC_Conversion(0);
+		lightSensor1 = ADC_Conversion(1);
+		
+		lightSensor2 = ADC_Conversion(2);
+		readPin(lightSensor1, lightSensor2, potMeter);
+		
+		//position = lightSensor1>>3;
+		position = correctPosition(300, lightSensor1, lightSensor2, position);
 		if (validatePosition(position) == true){
 			moveServo(position);
-		} else {
+			} else {
 			//return;
 		}
 		
-		//_delay_ms(1000);
+		
 		
 		/*
 		moveServo(1);

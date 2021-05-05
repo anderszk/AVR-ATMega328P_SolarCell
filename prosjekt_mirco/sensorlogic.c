@@ -29,13 +29,13 @@ void Timer1_PWM_init(){
 int ADC_Conversion(int8_t pin){
 
 	if (pin == 0){
-		ADMUX = (1<<REFS0)|(0<<ADLAR); // ADC0
+		ADMUX = (1<<REFS0)|(0<<ADLAR)|(0 << MUX1)|(0 << MUX0); // ADC0
 	}
 	else if(pin == 1){
-		ADMUX = (1<<REFS0)|(0<<ADLAR)|(1 << MUX0); // ADC1
+		ADMUX = (1<<REFS0)|(0<<ADLAR)|(0 << MUX1)|(1 << MUX0); // ADC1
 	}
 	else if (pin == 2){
-		ADMUX = (1<<REFS0)|(0<<ADLAR)|(1 << MUX1); // ADC2  potensiometer
+		ADMUX = (1<<REFS0)|(0<<ADLAR)|(1 << MUX1)|(0 << MUX0); // ADC2  potensiometer
 	}
 	else {
 		return 0;
@@ -50,8 +50,6 @@ int ADC_Conversion(int8_t pin){
 }
 
 void ADC_Init(void){
-	
-	DIDR0 |= (1<<ADC0D); // digital input buffer disable, saves power.
 	ADCSRA = (1<<ADEN)|(0b111<<ADPS0);
 }
 
@@ -83,7 +81,10 @@ int correctPosition(int16_t potValue, int16_t leftSensor, int16_t rightSensor, u
 	if (leftSensor > rightSensor){     //Må finne ut av hvilken vei den skal være
 		return (position -= potValue);
 	}
-	if (leftSensor < rightSensor){
+	else if (leftSensor < rightSensor){
 		return (position += potValue);
+	}
+	else{
+		return 0;
 	}
 }
