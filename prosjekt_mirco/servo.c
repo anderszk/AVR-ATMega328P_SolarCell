@@ -9,8 +9,7 @@
 #define SERVO_MAX F_CPU/1000000*2000/T1_PRESCALE
 #define SERVO_MIN F_CPU/1000000*460/T1_PRESCALE
 
-int positionMax = 180;
-int positionMin = 0;
+#define positionMax 180
 
 //Timer initialization
 void Timer1_PWM_init(int time){
@@ -29,29 +28,34 @@ void Timer1_PWM_init(int time){
 }
 
 
-//ADC initialization
-int ADC_Init(int pin){
+//ADC 
+int ADC_Conversion(uint8_t pin){  //conveurtion
 
 	if (pin == 0){
 		ADMUX = (1<<REFS0)|(0<<ADLAR); // ADC0 single ended input and result right adjusted.
 	}
 	else if(pin == 1){
-		ADMUX = (1<<REFS0)|(0<<ADLAR)|(1 << MUX0);
+		ADMUX = (1<<REFS0)|(0<<ADLAR)|(1 << MUX0);  // ADC1
 	}
 	else if (pin == 2)
 	{
-		ADMUX = (1<<REFS0)|(0<<ADLAR)|(1 << MUX1);
+		ADMUX = (1<<REFS0)|(0<<ADLAR)|(1 << MUX1);  // ADC2
 	}
-
-	DIDR0 |= (1<<ADC0D); // digital input buffer disable, saves power.
-
-	ADCSRA = (1<<ADEN)|(7<<ADPS0)|(1<<ADSC);
+	
+	// vent på start-convertion (vent så lenge bittet er 1)
+	do {} while (ADCSRA & (1<<ADSC)); // ADCSRA & 0b0100 0000
 
 	return ADC;
 }
 
+void ADC_Init(void){
+	
+	DIDR0 |= (1<<ADC0D); // digital input buffer disable, saves power.
+	ADCSRA = (1<<ADEN)|(7<<ADPS0)|(1<<ADSC);
+}
+
 //kjører servoen
 void moveServo(int position){
-	OCR1A = ((((position - positionMin)*(SERVO_MAX - SERVO_MIN))/(positionMax - positionMin)) + SERVO_MIN);
+	OCR1A = ((((position)*(SERVO_MAX - SERVO_MIN))/positionMax) + SERVO_MIN);
 }
 
