@@ -4,12 +4,13 @@
 #include <util/delay.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 //#define F_CPU 16000000UL // 16MHz system clock
 #define T1_PRESCALE 8 // Timer 1 clock prescaler
 #define SERVO_PERIOD F_CPU/1000000*20000/T1_PRESCALE
-#define SERVO_MAX F_CPU/1000000*2500/T1_PRESCALE
-#define SERVO_MIN F_CPU/1000000*490/T1_PRESCALE
+#define SERVO_MAX F_CPU/1000000*2550/T1_PRESCALE   // 2550
+#define SERVO_MIN F_CPU/1000000*500/T1_PRESCALE  // 600
 #define POSITION_MAX 180
 
 //Timer initialization
@@ -61,12 +62,17 @@ void moveServo(uint8_t position){
 
 
 bool validatePosition(uint8_t position){     // gjør sånn at posisjonen til servo holder seg mellom 0-180 grader
-	if (position <= 1){
-		position = 0;
+	if (!(position <= 5 || position >= 180)){
+		return true;
+	}
+	else{
 		return false;
 	}
-	else if(position >= 180){
-		position = 181;
+}
+
+
+bool validateTolerance(int16_t val1, int16_t val2){
+	if((abs(val1-val2) <= 2) || (abs(val2-val1) <= 2)){
 		return false;
 	}
 	else{
@@ -74,9 +80,10 @@ bool validatePosition(uint8_t position){     // gjør sånn at posisjonen til se
 	}
 }
 
+
 int correctPosition(int16_t potValue, int16_t leftSensor, int16_t rightSensor, uint8_t position){   //returnerer grader til servo
 	
-	potValue = potValue/200;
+	potValue = (potValue+100)/200;
 	
 	if (leftSensor > rightSensor){     //Må finne ut av hvilken vei den skal være
 		return (position -= potValue);

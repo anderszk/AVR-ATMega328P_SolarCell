@@ -17,17 +17,10 @@
 #define USART_BAUDRATE 9600
 #define BAUD_PRESCALE (((F_CPU / (USART_BAUDRATE * 16UL))) - 1)
 
-void readPin(int pin1, int pin2, int pin3){
-	printString(" lightSensor1: ");
-	printWord(pin1);
-	printString(",");
-	printString(" lightSensor2: ");
-	printWord(pin2);
-	printString(",");
-	printString(" potMeter: ");
-	printWord(pin3);
+void readPin(int pin){
+	printString("Sensorvalue: ");
+	printWord(pin);
 	printString("\r\n");
-	_delay_ms(1000);
 }
 
 int main(void) {
@@ -36,7 +29,6 @@ int main(void) {
 	uint16_t potMeter;
 	uint16_t lightSensor1;
 	uint16_t lightSensor2;
-	
 	
 	UBRR0 = BAUD_PRESCALE;
 	UCSR0B = (1 << RXEN0) | (1 << TXEN0);
@@ -47,30 +39,36 @@ int main(void) {
 	
 	do{
 		
-		potMeter = ADC_Conversion(0);
-		lightSensor1 = ADC_Conversion(1);
+		lightSensor1 = ADC_Conversion(0);
+		lightSensor2 = ADC_Conversion(1);;
+		potMeter = ADC_Conversion(2);
+
+		position = correctPosition(potMeter, lightSensor1, lightSensor2, position);
 		
-		lightSensor2 = ADC_Conversion(2);
-		readPin(lightSensor1, lightSensor2, potMeter);
-		
-		//position = lightSensor1>>3;
-		position = correctPosition(300, lightSensor1, lightSensor2, position);
-		if (validatePosition(position) == true){
+		if (validatePosition(position) && validateTolerance(lightSensor1, lightSensor2)){
 			moveServo(position);
-			} else {
-			//return;
+		}
+		else if (position > 180){
+			position = 180;
+		}
+		else if (position < 5){
+			position = 1;
 		}
 		
 		
+		readPin(position);
 		
-		/*
+		
+		
+		//Interrupts
+		
+		
+		/* For testing
 		moveServo(1);
 		_delay_ms(30000);
 		moveServo(179);
 		_delay_ms(30000);
 		*/
-		
-		//interrupts
 
 	} while(1);
 }
