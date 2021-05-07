@@ -9,8 +9,8 @@
 //#define F_CPU 16000000UL // 16MHz system clock
 #define T1_PRESCALE 8 // Timer 1 clock prescaler
 #define SERVO_PERIOD F_CPU/1000000*20000/T1_PRESCALE
-#define SERVO_MAX F_CPU/1000000*2550/T1_PRESCALE   // 2550
-#define SERVO_MIN F_CPU/1000000*500/T1_PRESCALE  // 600
+#define SERVO_MAX F_CPU/1000000*2550/T1_PRESCALE   /
+#define SERVO_MIN F_CPU/1000000*500/T1_PRESCALE  
 #define POSITION_MAX 180
 
 //Timer initialization
@@ -85,7 +85,7 @@ int correctPosition(int16_t potValue, int16_t leftSensor, int16_t rightSensor, u
 	
 	potValue = (potValue+100)/200;
 	
-	if (leftSensor > rightSensor){     //Må finne ut av hvilken vei den skal være
+	if (leftSensor > rightSensor){     
 		return (position -= potValue);
 	}
 	else if (leftSensor < rightSensor){
