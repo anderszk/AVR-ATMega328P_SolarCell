@@ -24,11 +24,6 @@ uint16_t lightSensor1;
 uint16_t lightSensor2;
 
 
-
-
-
-
-
 void readPin(int pin){
 	printWord(pin);
 	printString("\r\n");
@@ -44,10 +39,8 @@ ISR(INT0_vect) {
 		readPin(lightSensor2);
 		printString("Position: ");
 		readPin(position);
-		//_delay_ms(1000);
 	}
 	else{
-		
 	}
 }
 

@@ -40,13 +40,11 @@ int ADC_Conversion(int8_t pin){
 	}
 	else {
 		return 0;
-		//Flag
 	}
 	
 	ADCSRA |= (1<<ADSC);
 	
-	// vent på start-convertion (vent så lenge bittet e
-	do {} while (ADCSRA & (1<<ADSC)); // ADCSRA & 0b0100 0000
+	do {} while (ADCSRA & (1<<ADSC)); // vent på start-convertion (vent så lenge bittet er høy)
 	return ADC;
 }
 
@@ -72,7 +70,9 @@ bool validatePosition(uint8_t position){     // gjør sånn at posisjonen til se
 
 
 bool validateTolerance(int16_t val1, int16_t val2){
-	if((abs(val1-val2) <= 2) || (abs(val2-val1) <= 2)){
+	int tolleranse = 5;
+	
+	if((abs(val1-val2) <= tolleranse) || (abs(val2-val1) <= tolleranse)){
 		return false;
 	}
 	else{
