@@ -7,9 +7,10 @@ Filene på Github består av en main-fil, header-filer og de respektive source-f
 For å installere dette programmet kan du pulle fra repoen eller laste ned zip-versjonen.
 
 ## Komponenter som ble brukt
-  - 2xPhotoresistor (id)
-  - Potensiometer (id)
-  - Servemotor (id)
+  - 2xPhotoresistor
+  - Potensiometer
+  - Servemotor 
   - Arduino UNO
   - USB Type B
-  - Resistor (value)
+  - Resistor (200k ohm)
+  - Button
