@@ -14,22 +14,23 @@
 #include "sensorlogic.h"
 #include "usart.h"
 
+// ------- UART -------- //
 #define USART_BAUDRATE 9600
 #define BAUD_PRESCALE (((F_CPU / (USART_BAUDRATE * 16UL))) - 1)
 
-
+// ------- globale variabler -------- //
 uint8_t position = 90;
 uint16_t potMeter;
 uint16_t lightSensor1;
 uint16_t lightSensor2;
 
 
-void readPin(int pin){
+void readPin(int pin){   // skriver til verdi på UART
 	printWord(pin);
 	printString("\r\n");
 }
 
-ISR(INT0_vect) {
+ISR(INT0_vect) {    // utfører følgende kode når avbrudde trigges
 	if (bit_is_clear(PIND, PD2)) {
 		printString("Poteniometer value: ");
 		readPin(potMeter);
@@ -44,11 +45,11 @@ ISR(INT0_vect) {
 	}
 }
 
-void initInterrupt0(void) {
-	PORTD |= (1 << PD2);    // pull up
-	EIMSK |= (1 << INT0);                                 /* enable INT0 */
-	EICRA |= (1 << ISC00);                /* trigger when button changes */
-	sei();                          /* set (global) interrupt enable bit */
+void initInterrupt0(void) {    // innstiller avbruddet
+	PORTD |= (1 << PD2);    // lager pull up på pin 2
+	EIMSK |= (1 << INT0);                                 
+	EICRA |= (1 << ISC00);                
+	sei();                          
 }
 
 int main(void) {
@@ -61,22 +62,20 @@ int main(void) {
 	ADC_Init();
 	Timer1_PWM_init();
 	initInterrupt0();
-
-	 
-	 
 	
 	
 	// ------- Handler -------- //
 	do{
 		
+		// ------- ADC avlesninger -------- //
 		lightSensor1 = ADC_Conversion(0);
 		lightSensor2 = ADC_Conversion(1);
 		potMeter = ADC_Conversion(2);
 
-		position = correctPosition(potMeter, lightSensor1, lightSensor2, position);
+		position = correctPosition(potMeter, lightSensor1, lightSensor2, position);  // beregner posisjon til servo
 		
-		if (validatePosition(position) && validateTolerance(lightSensor1, lightSensor2)){
-			moveServo(position);
+		if (validatePosition(position) && validateTolerance(lightSensor1, lightSensor2)){   // sjekker om verdiene til syssensor er innenfor toleranse
+			moveServo(position);   // skriver til sevro
 		}
 		else if (position > 180){
 			position = 180;
