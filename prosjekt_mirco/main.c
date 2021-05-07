@@ -18,17 +18,6 @@
 #define BAUD_PRESCALE (((F_CPU / (USART_BAUDRATE * 16UL))) - 1)
 
 
-uint8_t position = 90;
-uint16_t potMeter;
-uint16_t lightSensor1;
-uint16_t lightSensor2;
-
-
-void readPin(int pin){
-	printWord(pin);
-	printString("\r\n");
-}
-
 ISR(INT0_vect) {
 	if (bit_is_clear(PIND, PD2)) {
 		printString("Poteniometer value: ");
@@ -40,8 +29,7 @@ ISR(INT0_vect) {
 		printString("Position: ");
 		readPin(position);
 	}
-	else{
-	}
+	else{}
 }
 
 void initInterrupt0(void) {
@@ -51,39 +39,62 @@ void initInterrupt0(void) {
 	sei();                          /* set (global) interrupt enable bit */
 }
 
+
+
+void readPin(int pin1, int pin2, int pin3){
+	printString(" lightSensor1: ");
+	printWord(pin1);
+	printString(",");
+	printString(" lightSensor2: ");
+	printWord(pin2);
+	printString(",");
+	printString(" potMeter: ");
+	printWord(pin3);
+	printString("\r\n");
+	_delay_ms(1000);
+}
+
 int main(void) {
+	
+	uint8_t position = 90;
+	uint16_t potMeter;
+	uint16_t lightSensor1;
+	uint16_t lightSensor2;
+	
 	
 	UBRR0 = BAUD_PRESCALE;
 	UCSR0B = (1 << RXEN0) | (1 << TXEN0);
 	
-	// ------- Inits -------- //
 	initUSART();
 	ADC_Init();
 	Timer1_PWM_init();
-	initInterrupt0();
-
-	 
-	 
 	
-	
-	// ------- Handler -------- //
 	do{
 		
-		lightSensor1 = ADC_Conversion(0);
-		lightSensor2 = ADC_Conversion(1);
-		potMeter = ADC_Conversion(2);
-
-		position = correctPosition(potMeter, lightSensor1, lightSensor2, position);
+		potMeter = ADC_Conversion(0);
+		lightSensor1 = ADC_Conversion(1);
+		lightSensor2 = ADC_Conversion(2);
+		readPin(lightSensor1, lightSensor2, potMeter);
 		
-		if (validatePosition(position) && validateTolerance(lightSensor1, lightSensor2)){
+		//position = lightSensor1>>3;
+		position = correctPosition(300, lightSensor1, lightSensor2, position);
+		if (validatePosition(position) == true){
 			moveServo(position);
+			} else {
+			//return;
 		}
-		else if (position > 180){
-			position = 180;
-		}
-		else if (position < 5){
-			position = 1;
-		}
+		
+		
+		
+		/*
+		moveServo(1);
+		_delay_ms(30000);
+		moveServo(179);
+		_delay_ms(30000);
+		*/
+		
+		//interrupts
+
 	} while(1);
 }
 
