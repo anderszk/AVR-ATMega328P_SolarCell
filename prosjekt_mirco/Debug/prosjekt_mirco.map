@@ -8,10 +8,19 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
                               C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o (exit)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
                               main.o (__do_copy_data)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+                              main.o (__do_clear_bss)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
                               sensorlogic.o (__umulhisi3)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
                               c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o) (__udivmodhi4)
+
+Allocating common symbols
+Common symbol       size              file
+
+potMeter            0x2               main.o
+lightSensor1        0x2               main.o
+lightSensor2        0x2               main.o
 
 Discarded input sections
 
@@ -100,6 +109,22 @@ Discarded input sections
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.fixed
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
@@ -257,7 +282,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x474
+.text           0x00000000      0x558
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -300,6 +325,8 @@ END GROUP
  *(.init4)
  .init4         0x00000074       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
                 0x00000074                __do_copy_data
+ .init4         0x0000008a       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+                0x0000008a                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -310,93 +337,98 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x0000008a        0x8 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
+ .init9         0x0000009a        0x8 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
  *(.init9)
  *(.text)
- .text          0x00000092        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
-                0x00000092                __vector_22
-                0x00000092                __vector_1
-                0x00000092                __vector_24
-                0x00000092                __vector_12
-                0x00000092                __bad_interrupt
-                0x00000092                __vector_6
-                0x00000092                __vector_3
-                0x00000092                __vector_23
-                0x00000092                __vector_25
-                0x00000092                __vector_11
-                0x00000092                __vector_13
-                0x00000092                __vector_17
-                0x00000092                __vector_19
-                0x00000092                __vector_7
-                0x00000092                __vector_5
-                0x00000092                __vector_4
-                0x00000092                __vector_9
-                0x00000092                __vector_2
-                0x00000092                __vector_21
-                0x00000092                __vector_15
-                0x00000092                __vector_8
-                0x00000092                __vector_14
-                0x00000092                __vector_10
-                0x00000092                __vector_16
-                0x00000092                __vector_18
-                0x00000092                __vector_20
-                0x00000096                . = ALIGN (0x2)
+ .text          0x000000a2        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
+                0x000000a2                __vector_22
+                0x000000a2                __vector_24
+                0x000000a2                __vector_12
+                0x000000a2                __bad_interrupt
+                0x000000a2                __vector_6
+                0x000000a2                __vector_3
+                0x000000a2                __vector_23
+                0x000000a2                __vector_25
+                0x000000a2                __vector_11
+                0x000000a2                __vector_13
+                0x000000a2                __vector_17
+                0x000000a2                __vector_19
+                0x000000a2                __vector_7
+                0x000000a2                __vector_5
+                0x000000a2                __vector_4
+                0x000000a2                __vector_9
+                0x000000a2                __vector_2
+                0x000000a2                __vector_21
+                0x000000a2                __vector_15
+                0x000000a2                __vector_8
+                0x000000a2                __vector_14
+                0x000000a2                __vector_10
+                0x000000a2                __vector_16
+                0x000000a2                __vector_18
+                0x000000a2                __vector_20
+                0x000000a6                . = ALIGN (0x2)
  *(.text.*)
- .text.readPin  0x00000096       0x22 main.o
-                0x00000096                readPin
- .text.main     0x000000b8       0x78 main.o
-                0x000000b8                main
+ .text.readPin  0x000000a6        0xe main.o
+                0x000000a6                readPin
+ .text.__vector_1
+                0x000000b4       0x96 main.o
+                0x000000b4                __vector_1
+ .text.initInterrupt0
+                0x0000014a       0x1a main.o
+                0x0000014a                initInterrupt0
+ .text.main     0x00000164       0xb0 main.o
+                0x00000164                main
  .text.Timer1_PWM_init
-                0x00000130       0x1e sensorlogic.o
-                0x00000130                Timer1_PWM_init
+                0x00000214       0x1e sensorlogic.o
+                0x00000214                Timer1_PWM_init
  .text.ADC_Conversion
-                0x0000014e       0x44 sensorlogic.o
-                0x0000014e                ADC_Conversion
+                0x00000232       0x44 sensorlogic.o
+                0x00000232                ADC_Conversion
  .text.ADC_Init
-                0x00000192        0x8 sensorlogic.o
-                0x00000192                ADC_Init
+                0x00000276        0x8 sensorlogic.o
+                0x00000276                ADC_Init
  .text.moveServo
-                0x0000019a       0x26 sensorlogic.o
-                0x0000019a                moveServo
+                0x0000027e       0x26 sensorlogic.o
+                0x0000027e                moveServo
  .text.validatePosition
-                0x000001c0        0xe sensorlogic.o
-                0x000001c0                validatePosition
+                0x000002a4        0xe sensorlogic.o
+                0x000002a4                validatePosition
  .text.validateTolerance
-                0x000001ce       0x2a sensorlogic.o
-                0x000001ce                validateTolerance
+                0x000002b2       0x2a sensorlogic.o
+                0x000002b2                validateTolerance
  .text.correctPosition
-                0x000001f8       0x3a sensorlogic.o
-                0x000001f8                correctPosition
+                0x000002dc       0x3a sensorlogic.o
+                0x000002dc                correctPosition
  .text.initUSART
-                0x00000232       0x24 usart.o
-                0x00000232                initUSART
+                0x00000316       0x24 usart.o
+                0x00000316                initUSART
  .text.transmitByte
-                0x00000256        0xe usart.o
-                0x00000256                transmitByte
+                0x0000033a        0xe usart.o
+                0x0000033a                transmitByte
  .text.printString
-                0x00000264       0x26 usart.o
-                0x00000264                printString
+                0x00000348       0x26 usart.o
+                0x00000348                printString
  .text.printWord
-                0x0000028a      0x134 usart.o
-                0x0000028a                printWord
+                0x0000036e      0x134 usart.o
+                0x0000036e                printWord
  .text.libgcc.div
-                0x000003be       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
-                0x000003be                _div
-                0x000003be                __divmodhi4
+                0x000004a2       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
+                0x000004a2                _div
+                0x000004a2                __divmodhi4
  .text.libgcc.div
-                0x000003e6       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x000003e6                __udivmodsi4
+                0x000004ca       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x000004ca                __udivmodsi4
  .text.libgcc.mul
-                0x0000042a       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
-                0x0000042a                __umulhisi3
+                0x0000050e       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
+                0x0000050e                __umulhisi3
  .text.libgcc.div
-                0x00000448       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
-                0x00000448                __udivmodhi4
-                0x00000470                . = ALIGN (0x2)
+                0x0000052c       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
+                0x0000052c                __udivmodhi4
+                0x00000554                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000470        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00000470                _exit
-                0x00000470                exit
+ .fini9         0x00000554        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00000554                _exit
+                0x00000554                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -415,39 +447,45 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000470        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000554        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000474                _etext = .
+                0x00000558                _etext = .
 
-.data           0x00800100       0x12 load address 0x00000474
+.data           0x00800100       0x50 load address 0x00000558
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
+ .data.position
+                0x00800100        0x1 main.o
+                0x00800100                position
  *(.gnu.linkonce.d*)
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x00800100       0x11 main.o
+                0x00800101       0x4f main.o
  *(.gnu.linkonce.r*)
-                0x00800112                . = ALIGN (0x2)
- *fill*         0x00800111        0x1 
-                0x00800112                _edata = .
-                0x00800112                PROVIDE (__data_end, .)
+                0x00800150                . = ALIGN (0x2)
+                0x00800150                _edata = .
+                0x00800150                PROVIDE (__data_end, .)
 
-.bss            0x00800112        0x0
-                [!provide]                PROVIDE (__bss_start, .)
+.bss            0x00800150        0x6
+                0x00800150                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  *(COMMON)
-                [!provide]                PROVIDE (__bss_end, .)
-                0x00000474                __data_load_start = LOADADDR (.data)
-                0x00000486                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800150        0x6 main.o
+                0x00800150                potMeter
+                0x00800152                lightSensor1
+                0x00800154                lightSensor2
+                0x00800156                PROVIDE (__bss_end, .)
+                0x00000558                __data_load_start = LOADADDR (.data)
+                0x000005a8                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800112        0x0
+.noinit         0x00800156        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800112                _end = .
+                0x00800156                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -514,60 +552,60 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0xe8
+.debug_aranges  0x00000000       0xf8
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x28 main.o
+                0x00000000       0x38 main.o
  .debug_aranges
-                0x00000028       0x50 sensorlogic.o
+                0x00000038       0x50 sensorlogic.o
  .debug_aranges
-                0x00000078       0x70 usart.o
+                0x00000088       0x70 usart.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xe85
+.debug_info     0x00000000      0xee3
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_info    0x000005f4      0x2a6 main.o
- .debug_info    0x0000089a      0x1dc sensorlogic.o
- .debug_info    0x00000a76      0x40f usart.o
+ .debug_info    0x000005f4      0x304 main.o
+ .debug_info    0x000008f8      0x1dc sensorlogic.o
+ .debug_info    0x00000ad4      0x40f usart.o
 
-.debug_abbrev   0x00000000      0x8a0
+.debug_abbrev   0x00000000      0x8c5
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x5a2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_abbrev  0x000005a2       0xe0 main.o
- .debug_abbrev  0x00000682       0xce sensorlogic.o
- .debug_abbrev  0x00000750      0x150 usart.o
+ .debug_abbrev  0x000005a2      0x105 main.o
+ .debug_abbrev  0x000006a7       0xce sensorlogic.o
+ .debug_abbrev  0x00000775      0x150 usart.o
 
-.debug_line     0x00000000      0x723
+.debug_line     0x00000000      0x77f
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x134 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_line    0x00000134      0x157 main.o
- .debug_line    0x0000028b      0x1d4 sensorlogic.o
- .debug_line    0x0000045f      0x2c4 usart.o
+ .debug_line    0x00000134      0x1b3 main.o
+ .debug_line    0x000002e7      0x1d4 sensorlogic.o
+ .debug_line    0x000004bb      0x2c4 usart.o
 
-.debug_frame    0x00000000      0x214
+.debug_frame    0x00000000      0x270
  *(.debug_frame)
- .debug_frame   0x00000000       0x40 main.o
- .debug_frame   0x00000040       0x90 sensorlogic.o
- .debug_frame   0x000000d0      0x144 usart.o
+ .debug_frame   0x00000000       0x9c main.o
+ .debug_frame   0x0000009c       0x90 sensorlogic.o
+ .debug_frame   0x0000012c      0x144 usart.o
 
-.debug_str      0x00000000      0x521
+.debug_str      0x00000000      0x53b
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_str     0x00000208      0x211 main.o
-                                0x245 (size before relaxing)
- .debug_str     0x00000419       0x43 sensorlogic.o
+ .debug_str     0x00000208      0x22b main.o
+                                0x25f (size before relaxing)
+ .debug_str     0x00000433       0x43 sensorlogic.o
                                 0x23b (size before relaxing)
- .debug_str     0x0000045c       0xc5 usart.o
+ .debug_str     0x00000476       0xc5 usart.o
                                 0x265 (size before relaxing)
 
-.debug_loc      0x00000000      0x7af
+.debug_loc      0x00000000      0x7e2
  *(.debug_loc)
- .debug_loc     0x00000000       0xbe main.o
- .debug_loc     0x000000be      0x1e9 sensorlogic.o
- .debug_loc     0x000002a7      0x508 usart.o
+ .debug_loc     0x00000000       0xf1 main.o
+ .debug_loc     0x000000f1      0x1e9 sensorlogic.o
+ .debug_loc     0x000002da      0x508 usart.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -587,11 +625,11 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xb8
+.debug_ranges   0x00000000       0xc8
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x18 main.o
- .debug_ranges  0x00000018       0x40 sensorlogic.o
- .debug_ranges  0x00000058       0x60 usart.o
+ .debug_ranges  0x00000000       0x28 main.o
+ .debug_ranges  0x00000028       0x40 sensorlogic.o
+ .debug_ranges  0x00000068       0x60 usart.o
 
 .debug_macro
  *(.debug_macro)
