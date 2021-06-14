@@ -1,1 +1,6 @@
-*.Makefile linguist-detectable=false
+*.cproj linguist-detectable=false
+*.d linguist-detectable=false
+*.o linguist-detectable=false
+*.eep linguist-detectable=false
+*.elf linguist-detectable=false
+
